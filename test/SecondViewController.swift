@@ -11,7 +11,9 @@ import ObjectMapper
 
 class SecondViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var connectingLabel: UILabel!
-    
+    @IBOutlet weak var tableView: UITableView!
+    var activityView: UIActivityIndicatorView?
+
     var currentList  = [WebsocketDataResult]()
     var manager:SocketManager?
     var socketIOClient:SocketIOClient!
@@ -23,12 +25,23 @@ class SecondViewController: UIViewController,UITableViewDelegate,UITableViewData
         self.tableView.isHidden = true
         connectingLabel.textColor = .red
         connectingLabel.text = "Disconnect"
+        showActivityIndicator()
 
     }
     
     
-    @IBOutlet weak var tableView: UITableView!
-    
+    func showActivityIndicator() {
+        activityView = UIActivityIndicatorView(style: .large)
+        activityView?.center = self.view.center
+        self.view.addSubview(activityView!)
+        activityView?.startAnimating()
+    }
+
+    func hideActivityIndicator(){
+        if (activityView != nil){
+            activityView?.stopAnimating()
+        }
+    }
     func ConnectToSocket() {
 
             manager = SocketManager(socketURL: URL(string: "https://q.investaz.az")!, config: [.log(true), .compress,.path("/live")])
@@ -43,7 +56,7 @@ class SecondViewController: UIViewController,UITableViewDelegate,UITableViewData
                 self.currentList.removeAll()
                 self.currentList +=  (report?.result)!
                 self.tableView.reloadData()
-
+                self.hideActivityIndicator()
             
                  }
             socketIOClient.on(clientEvent: .error) { (data, eck) in
@@ -56,8 +69,9 @@ class SecondViewController: UIViewController,UITableViewDelegate,UITableViewData
                 self.connectingLabel.text = "Disconnect"
             }
 
-            socketIOClient.on(clientEvent: SocketClientEvent.reconnect) { (data, eck) in
+        socketIOClient.on(clientEvent: SocketClientEvent.reconnect) { (data, eck) in
             
+                
                 
             }
 

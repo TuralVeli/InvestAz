@@ -13,7 +13,6 @@ DEPENDENCIES:
   - AlamofireObjectMapper
   - ObjectMapper
   - Socket.IO-Client-Swift (~> 15.2.0)
-  - Starscream
 
 SPEC REPOS:
   trunk:
@@ -30,6 +29,6 @@ SPEC CHECKSUMS:
   Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
   Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: 0d37fd1f978582e92e14a6d51ebb45c407143e66
+PODFILE CHECKSUM: f195ac8d0baf44750a9a48141d275b797fffb6f3
 
 COCOAPODS: 1.10.0

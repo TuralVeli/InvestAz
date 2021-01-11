@@ -10,6 +10,5 @@ pod 'Alamofire', '~> 4.9.1'
 pod 'ObjectMapper'
 pod 'AlamofireObjectMapper'
 pod 'Socket.IO-Client-Swift', '~> 15.2.0'
-pod 'Starscream'
 
 end
